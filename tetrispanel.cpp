@@ -47,6 +47,11 @@ void TetrisPanel::paintEvent(QPaintEvent *event)
     delete painter;
 }
 
+TetrisCell *TetrisPanel::getCell(int x, int y)
+{
+    return &cells[y][x];
+}
+
 void TetrisPanel::setCellColor(int x, int y, QColor color, bool update)
 {
     cells[y][x].setColor(color);
@@ -68,8 +73,9 @@ void TetrisPanel::drawCells(QPainter *painter)
     for (int y=0; y<cells.size() ; y++) {
         auto cellsRow = cells[y];
         for (int x=0; x<cellsRow.size() ; x++) {
-            if(cellsRow[x].exist())
+            if(cellsRow[x].exist()){
                 painter->fillRect(x*cellWidth, y*cellHeight, cellWidth, cellHeight, *cellsRow[x].color());
+            }
         }
     }
 }

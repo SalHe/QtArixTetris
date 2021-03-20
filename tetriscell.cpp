@@ -29,24 +29,3 @@ void TetrisCell::setExist(bool exist)
 {
     m_exist = exist;
 }
-
-bool TetrisCell::freeCell()
-{
-    return m_isFree;
-}
-
-void TetrisCell::setFreeCell(bool free)
-{
-    m_isFree = free;
-}
-
-QPoint TetrisCell::position()
-{
-    return m_position;
-}
-
-void TetrisCell::setPosition(int x, int y)
-{
-    m_position.setX(x);
-    m_position.setY(y);
-}

@@ -23,6 +23,7 @@ public:
     void init(int c, int r);
     void paintEvent(QPaintEvent *event) override;
 
+    TetrisCell * getCell(int x, int y);
     void setCellColor(int x, int y, QColor color, bool update = false);
     int cellRows();
     int cellColumns();

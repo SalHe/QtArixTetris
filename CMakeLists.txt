@@ -43,6 +43,9 @@ set(PROJECT_SOURCES
 
         tetriscontroller.h
         tetriscontroller.cpp
+
+        cellsgroup.h
+        cellsgroup.cpp
         ${TS_FILES}
 )
 

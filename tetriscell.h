@@ -3,14 +3,26 @@
 
 #include <QObject>
 #include <QColor>
+#include <QPoint>
 
 class TetrisCell
 {
 
     QColor m_color;
+
+    /**
+     * @brief m_exist 用于指明该对象所在位置是否代表了一个方块。
+     */
     bool   m_exist = false;
 
+    /**
+     * @brief m_isFree 指明方块是否是非受限制类的方块。
+     */
     bool   m_isFree = false;
+
+    /**
+     * @brief m_position 指明方块的位置，用于非受限制的方块。
+     */
     QPoint m_position;
 
 public:
@@ -22,12 +34,6 @@ public:
 
     bool exist();
     void setExist(bool exist);
-
-    bool freeCell();
-    void setFreeCell(bool free);
-
-    QPoint position();
-    void setPosition(int x, int y);
 
 };
 

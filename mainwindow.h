@@ -1,6 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "tetriscontroller.h"
+
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -10,6 +12,8 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+
+    TetrisController * controller;
 
 public:
     MainWindow(QWidget *parent = nullptr);

@@ -5,14 +5,17 @@
     <name>MainWindow</name>
     <message>
         <location filename="mainwindow.ui" line="14"/>
-        <location filename="build/ArixTetris_autogen/include_Debug/ui_mainwindow.h" line="62"/>
         <source>MainWindow</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="37"/>
-        <location filename="build/ArixTetris_autogen/include_Debug/ui_mainwindow.h" line="63"/>
         <source>生成方块</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="50"/>
+        <source>开始游戏</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

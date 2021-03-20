@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
+#include <QMessageBox>
 #include <QRandomGenerator>
 #include <QTime>
 
@@ -19,6 +20,22 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::timerEvent(QTimerEvent *event)
+{
+    if(event->timerId() == blockDownTimer){
+        if(controller->isBlockToBottom()){
+            controller->placeBlock();
+            controller->nextBlock(rand() % 7);
+            if(controller->isBlockToBottom()){
+                QMessageBox::critical(this, "游戏结束！", "Game Over");
+                killTimer(blockDownTimer);
+            }
+        }else{
+            controller->moveBlock(TetrisController::MoveDirection::DOWN);
+        }
+    }
+}
+
 void MainWindow::generateRandomCells()
 {
     QRandomGenerator random(QTime::currentTime().msec());
@@ -33,5 +50,10 @@ void MainWindow::generateRandomCells()
     controller->setBlockColor(QColor::fromRgb(random.generate() % 255, random.generate() % 255, random.generate() % 255));
     controller->setCurrentBlock(random.generate() % 7);
 
+}
+
+void MainWindow::startGame()
+{
+    blockDownTimer = startTimer(100);
 }
 

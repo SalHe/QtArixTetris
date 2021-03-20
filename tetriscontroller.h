@@ -21,6 +21,11 @@ class TetrisController : public QObject
     int currentBlock[4][4] = {0};
 
 public:
+
+    enum MoveDirection{
+        UP, DOWN, LEFT, RIGHT
+    };
+
     explicit TetrisController(int ox, int oy,TetrisPanel *parent = nullptr);
 
     inline TetrisPanel * panel(){
@@ -28,12 +33,28 @@ public:
     }
 
     void setCurrentBlock(int id);
+    void nextBlock(int id);
+    void setBlockPosition(QPoint position);
+    void setBlockPosition(int x, int y);
     void setBlockColor(QColor color);
     void setOriginPosition(int x, int y);
-    void emptyBlockInPanel();
     void resetBlockPosition();
+    bool isBlockToBottom();
+    void placeBlock();
+
+    void moveBlock(MoveDirection direction);
+    void moveBlockUp();
+    void moveBlockDown();
+    void moveBlockLeft();
+    void moveBlockRight();
 
 private:
+
+    bool canMove(int dx, int dy);
+
+    void emptyBlockInPanel();
+    void showBlockInPanel();
+    void refreshBlockInPanel();
     void refreshBlockInPanel(QPoint newPostion);
 
 signals:

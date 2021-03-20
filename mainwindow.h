@@ -15,6 +15,8 @@ class MainWindow : public QMainWindow
 
     TetrisController * controller;
 
+    int blockDownTimer;
+
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -22,7 +24,12 @@ public:
 private:
     Ui::MainWindow *ui;
 
+protected:
+    void timerEvent(QTimerEvent *event) override;
+
+
 private slots:
     void generateRandomCells();
+    void startGame();
 };
 #endif // MAINWINDOW_H

@@ -49,7 +49,9 @@ void TetrisPanel::paintEvent(QPaintEvent *event)
 
 TetrisCell *TetrisPanel::getCell(int x, int y)
 {
-    return &cells[y][x];
+    if(x>=0 && y>=0 && x<column && y<row)
+        return &cells[y][x];
+    return nullptr;
 }
 
 void TetrisPanel::setCellColor(int x, int y, QColor color, bool update)

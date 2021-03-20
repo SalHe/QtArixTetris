@@ -24,7 +24,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="btnGenerate">
     <property name="geometry">
      <rect>
       <x>420</x>
@@ -35,6 +35,19 @@
     </property>
     <property name="text">
      <string>生成方块</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnStart">
+    <property name="geometry">
+     <rect>
+      <x>530</x>
+      <y>20</y>
+      <width>93</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>开始游戏</string>
     </property>
    </widget>
   </widget>
@@ -61,7 +74,7 @@
  <resources/>
  <connections>
   <connection>
-   <sender>pushButton</sender>
+   <sender>btnGenerate</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
    <slot>generateRandomCells()</slot>
@@ -76,8 +89,25 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>btnStart</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>startGame()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>565</x>
+     <y>69</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>562</x>
+     <y>117</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>generateRandomCells()</slot>
+  <slot>startGame()</slot>
  </slots>
 </ui>

@@ -42,7 +42,7 @@ public:
     bool isBlockToBottom();
     void placeBlock();
 
-    void rotate();
+    bool rotate();
 
     void moveBlock(MoveDirection direction);
     void moveBlockUp();

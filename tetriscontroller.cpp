@@ -155,11 +155,9 @@ void TetrisController::emptyBlockInPanel()
         for(int x=0; x<4; x++){
             if(currentBlock[y][x]){
                 TetrisCell * cell;
-
-                if(blockPosition.x() + x>=0 && blockPosition.y() + y>= 0){
-                    cell = panel()->getCell(blockPosition.x() + x, blockPosition.y() + y);
+                cell = panel()->getCell(blockPosition.x() + x, blockPosition.y() + y);
+                if(cell)
                     cell->setExist(false);
-                }
             }
         }
     }
@@ -208,9 +206,38 @@ void TetrisController::placeBlock()
     }
 }
 
-void TetrisController::rotate()
+bool TetrisController::rotate()
 {
-    setCurrentBlock(rand() % 7); // 先模拟一下
+    int rotatedBlock[4][4];
+
+    for(int y=0; y<4; y++){
+        for(int x=0; x<4; x++){
+            rotatedBlock[y][x] = currentBlock[3-x][y];
+
+            if(rotatedBlock[y][x]){
+                // 在判断之前本就有自身的方块在目标位置
+                // 但是它们不会影响自身的旋转
+                if(y>=0 && y < 4 && x>=0 && x <4 && currentBlock[y][x])
+                    continue;
+
+                auto * cell = panel()->getCell(blockPosition.x() + x, blockPosition.y() + y);
+
+                if(!cell) return false; // 越界
+
+                if(cell->exist()) return false; // 目的位置有方块存在
+
+            }
+        }
+    }
+
+    emptyBlockInPanel();
+    for(int y=0; y<4; y++){
+        for(int x=0; x<4; x++){
+            currentBlock[y][x] = rotatedBlock[y][x];
+        }
+    }
+    showBlockInPanel();
+    return true;
 }
 
 void TetrisController::moveBlock(TetrisController::MoveDirection direction)

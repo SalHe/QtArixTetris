@@ -33,7 +33,7 @@ public:
     }
 
     void setCurrentBlock(int id);
-    void nextBlock(int id);
+    void nextBlock(int id, QColor color);
     void setBlockPosition(QPoint position);
     void setBlockPosition(int x, int y);
     void setBlockColor(QColor color);
@@ -41,6 +41,8 @@ public:
     void resetBlockPosition();
     bool isBlockToBottom();
     void placeBlock();
+
+    void rotate();
 
     void moveBlock(MoveDirection direction);
     void moveBlockUp();
@@ -50,6 +52,7 @@ public:
 
 private:
 
+    void move(int dx, int dy);
     bool canMove(int dx, int dy);
 
     void emptyBlockInPanel();

@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
 
+#include <QKeyEvent>
 #include <QMessageBox>
 #include <QRandomGenerator>
 #include <QTime>
@@ -20,19 +21,48 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    pressedKeys[event->key()] = true;
+    handleKey();
+}
+
+void MainWindow::keyReleaseEvent(QKeyEvent *event)
+{
+    pressedKeys[event->key()] = false;
+}
+
 void MainWindow::timerEvent(QTimerEvent *event)
 {
     if(event->timerId() == blockDownTimer){
         if(controller->isBlockToBottom()){
             controller->placeBlock();
-            controller->nextBlock(rand() % 7);
+
+            QRandomGenerator random(QTime::currentTime().msec());
+            controller->nextBlock(rand() % 7, QColor::fromRgb(random.generate() % 255, random.generate() % 255, random.generate() % 255));
             if(controller->isBlockToBottom()){
                 QMessageBox::critical(this, "游戏结束！", "Game Over");
                 killTimer(blockDownTimer);
+                killTimer(keyPressProcessTimer);
             }
         }else{
             controller->moveBlock(TetrisController::MoveDirection::DOWN);
         }
+    }else if(event->timerId() == keyPressProcessTimer){
+        handleKey();
+    }
+}
+
+void MainWindow::handleKey()
+{
+    if(pressedKeys[Qt::Key_A]){
+        controller->moveBlockLeft();
+    }else if(pressedKeys[Qt::Key_D]){
+        controller->moveBlockRight();
+    }else if(pressedKeys[Qt::Key_S]){
+        controller->moveBlockDown();
+    }else if(pressedKeys[Qt::Key_W]){
+        controller->rotate();
     }
 }
 
@@ -54,6 +84,7 @@ void MainWindow::generateRandomCells()
 
 void MainWindow::startGame()
 {
-    blockDownTimer = startTimer(100);
+    blockDownTimer = startTimer(1000 / 2);
+    keyPressProcessTimer = startTimer(1000/3);
 }
 

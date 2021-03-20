@@ -118,9 +118,10 @@ void TetrisController::setCurrentBlock(int id)
     showBlockInPanel();
 }
 
-void TetrisController::nextBlock(int id)
+void TetrisController::nextBlock(int id, QColor color)
 {
     blockTemplates[id]->copyTo(currentBlock);
+    blockColor = color;
     blockPosition = originPosition;
     showBlockInPanel();
 }
@@ -207,6 +208,11 @@ void TetrisController::placeBlock()
     }
 }
 
+void TetrisController::rotate()
+{
+    setCurrentBlock(rand() % 7); // 先模拟一下
+}
+
 void TetrisController::moveBlock(TetrisController::MoveDirection direction)
 {
     switch (direction) {
@@ -227,24 +233,29 @@ void TetrisController::moveBlock(TetrisController::MoveDirection direction)
 
 void TetrisController::moveBlockUp()
 {
-
+    move(0,-1);
 }
 
 void TetrisController::moveBlockDown()
 {
-    if(canMove(0,1)){
-        setBlockPosition(blockPosition.x()+0, blockPosition.y() + 1);
-    }
+    move(0,1);
 }
 
 void TetrisController::moveBlockLeft()
 {
-
+    move(-1,0);
 }
 
 void TetrisController::moveBlockRight()
 {
+    move(1,0);
+}
 
+void TetrisController::move(int dx, int dy)
+{
+    if(canMove(dx,dy)){
+        setBlockPosition(blockPosition.x()+dx, blockPosition.y() + dy);
+    }
 }
 
 #include <QDebug>

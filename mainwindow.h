@@ -4,6 +4,7 @@
 #include "tetriscontroller.h"
 
 #include <QMainWindow>
+#include <QMap>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -16,6 +17,9 @@ class MainWindow : public QMainWindow
     TetrisController * controller;
 
     int blockDownTimer;
+    int keyPressProcessTimer;
+
+    QMap<int, bool> pressedKeys;
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -25,7 +29,11 @@ private:
     Ui::MainWindow *ui;
 
 protected:
+    void keyPressEvent(QKeyEvent *event) override;
+    void keyReleaseEvent(QKeyEvent *event) override;
     void timerEvent(QTimerEvent *event) override;
+
+    void handleKey();
 
 
 private slots:

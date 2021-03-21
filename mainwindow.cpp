@@ -67,6 +67,8 @@ void MainWindow::timerEvent(QTimerEvent *event)
             QRandomGenerator random(QTime::currentTime().msec());
             setNextBlock(rand() % 7, QColor::fromRgb(random.generate() % 255, random.generate() % 255, random.generate() % 255));
             if(controller->isBlockToBottom()){
+                QMessageBox::critical(this, tr("俄罗斯方块"), tr("游戏结束！"));
+
                 killTimer(blockDownTimer);
                 killTimer(keyPressProcessTimer);
             }

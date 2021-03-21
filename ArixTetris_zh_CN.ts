@@ -5,6 +5,7 @@
     <name>MainWindow</name>
     <message>
         <location filename="mainwindow.ui" line="14"/>
+        <location filename="mainwindow.cpp" line="70"/>
         <source>俄罗斯方块</source>
         <translation type="unfinished"></translation>
     </message>
@@ -46,6 +47,11 @@
     <message>
         <location filename="mainwindow.cpp" line="45"/>
         <source>已暂停</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="70"/>
+        <source>游戏结束！</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

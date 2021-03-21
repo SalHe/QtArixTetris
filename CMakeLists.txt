@@ -27,7 +27,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 COMPONENTS Widgets LinguistTools REQUIRED)
 find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Widgets LinguistTools REQUIRED)
 
-set(TS_FILES ArixTetris_zh_CN.ts)
+set(TS_FILES
+
+    ArixTetris_zh_CN.ts
+    ArixTetris_en_US.ts
+
+    )
 
 set(PROJECT_SOURCES
         main.cpp

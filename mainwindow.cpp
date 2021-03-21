@@ -127,6 +127,7 @@ void MainWindow::generateRandomCells()
 
 void MainWindow::startGame()
 {
+    emptyCells();
     blockDownTimer = startTimer(1000 / 2);
     keyPressProcessTimer = startTimer(1000/3);
 

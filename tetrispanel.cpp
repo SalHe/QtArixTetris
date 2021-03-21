@@ -1,5 +1,6 @@
 #include <QPaintEvent>
 #include <QPainter>
+#include <QDebug>
 #include "tetrispanel.h"
 
 
@@ -68,6 +69,21 @@ int TetrisPanel::cellRows()
 int TetrisPanel::cellColumns()
 {
     return column;
+}
+
+void TetrisPanel::debugOutputCells()
+{
+    qDebug()<<"-------------------";
+    QString str;
+    for (int y=0; y<cells.size() ; y++) {
+        auto cellsRow = cells[y];
+        for (int x=0; x<cellsRow.size() ; x++) {
+            str.append(cellsRow[x].exist() ? "1" : "0");
+            str.append(",");
+        }
+        qDebug()<<str;
+        str.resize(0);
+    }
 }
 
 void TetrisPanel::drawCells(QPainter *painter)

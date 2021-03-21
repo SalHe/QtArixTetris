@@ -42,6 +42,8 @@ public:
     bool isBlockToBottom();
     void placeBlock();
 
+    int removeFullLine();
+
     bool rotate();
 
     void moveBlock(MoveDirection direction);

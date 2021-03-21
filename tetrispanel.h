@@ -28,6 +28,7 @@ public:
     int cellRows();
     int cellColumns();
 
+    void debugOutputCells();
 signals:
 
 

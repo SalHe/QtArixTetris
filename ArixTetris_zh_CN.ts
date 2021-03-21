@@ -18,5 +18,10 @@
         <source>开始游戏</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="mainwindow.ui" line="63"/>
+        <source>清空方块</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

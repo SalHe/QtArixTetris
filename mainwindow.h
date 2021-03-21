@@ -39,5 +39,6 @@ protected:
 private slots:
     void generateRandomCells();
     void startGame();
+    void emptyCells();
 };
 #endif // MAINWINDOW_H

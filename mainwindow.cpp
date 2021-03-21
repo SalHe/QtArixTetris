@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <QRandomGenerator>
 #include <QTime>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -38,10 +39,12 @@ void MainWindow::timerEvent(QTimerEvent *event)
         if(controller->isBlockToBottom()){
             controller->placeBlock();
 
+            int fullLines = controller->removeFullLine();
+            qDebug() << "FULL LINES = " << fullLines;
+
             QRandomGenerator random(QTime::currentTime().msec());
             controller->nextBlock(rand() % 7, QColor::fromRgb(random.generate() % 255, random.generate() % 255, random.generate() % 255));
             if(controller->isBlockToBottom()){
-                QMessageBox::critical(this, "游戏结束！", "Game Over");
                 killTimer(blockDownTimer);
                 killTimer(keyPressProcessTimer);
             }
@@ -69,13 +72,13 @@ void MainWindow::handleKey()
 void MainWindow::generateRandomCells()
 {
     QRandomGenerator random(QTime::currentTime().msec());
-    // for (int y=0;y < ui->tetrisPanel->cellRows(); y++) {
-    //     for (int x=0; x < ui->tetrisPanel->cellColumns(); x++) {
-    //         ui->tetrisPanel->getCell(x, y)->setExist(random.generate() % 2);
-    //         ui->tetrisPanel->setCellColor(x, y, QColor::fromRgb(random.generate() % 255, random.generate() % 255, random.generate() % 255));
-    //     }
-    // }
-    // ui->tetrisPanel->update();
+     for (int y=17 - random.generate()%3;y < ui->tetrisPanel->cellRows(); y++) {
+         for (int x=0; x < ui->tetrisPanel->cellColumns(); x++) {
+             ui->tetrisPanel->getCell(x, y)->setExist((random.generate() % 2) || y>=16);
+             ui->tetrisPanel->setCellColor(x, y, QColor::fromRgb(random.generate() % 255, random.generate() % 255, random.generate() % 255));
+         }
+     }
+     // ui->tetrisPanel->update();
 
     controller->setBlockColor(QColor::fromRgb(random.generate() % 255, random.generate() % 255, random.generate() % 255));
     controller->setCurrentBlock(random.generate() % 7);
@@ -86,5 +89,15 @@ void MainWindow::startGame()
 {
     blockDownTimer = startTimer(1000 / 2);
     keyPressProcessTimer = startTimer(1000/3);
+}
+
+void MainWindow::emptyCells()
+{
+    for (int y=0;y < ui->tetrisPanel->cellRows(); y++) {
+        for (int x=0; x < ui->tetrisPanel->cellColumns(); x++) {
+            ui->tetrisPanel->getCell(x, y)->setExist(false);
+        }
+    }
+    ui->tetrisPanel->update();
 }
 

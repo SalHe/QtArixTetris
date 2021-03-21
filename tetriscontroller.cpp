@@ -206,6 +206,40 @@ void TetrisController::placeBlock()
     }
 }
 
+#include <QDebug>
+int TetrisController::removeFullLine()
+{
+    int fullLines = 0;
+    int y = panel()->cellRows()-1;
+    while(y>0){
+        int cellCount = 0;
+        for(int x=0; x<panel()->cellColumns(); x++){
+            if(panel()->getCell(x, y)->exist()){
+                cellCount++;
+            }
+        }
+
+        if(cellCount == panel()->cellColumns()){
+            for(int ny = y; ny > 0; ny--){
+                for(int x=0; x<panel()->cellColumns(); x++){
+                    auto * downCell = panel()->getCell(x, ny);
+                    auto * upCell = panel()->getCell(x, ny-1);
+                    downCell->setColor(*upCell->color());
+                    downCell->setExist(upCell->exist());
+                    upCell->setExist(false);
+                }
+            }
+            fullLines++;
+            y++;
+        }
+
+        panel()->debugOutputCells();
+        y--;
+    }
+    panel()->update();
+    return fullLines;
+}
+
 bool TetrisController::rotate()
 {
     int rotatedBlock[4][4];

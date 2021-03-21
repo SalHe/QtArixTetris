@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>660</width>
+    <width>664</width>
     <height>657</height>
    </rect>
   </property>
@@ -25,10 +25,13 @@
     </property>
    </widget>
    <widget class="QPushButton" name="btnGenerate">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>20</y>
+      <x>690</x>
+      <y>350</y>
       <width>93</width>
       <height>28</height>
      </rect>
@@ -40,21 +43,29 @@
    <widget class="QPushButton" name="btnStart">
     <property name="geometry">
      <rect>
-      <x>530</x>
+      <x>420</x>
       <y>20</y>
-      <width>93</width>
-      <height>28</height>
+      <width>201</width>
+      <height>61</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>开始游戏</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btnEmpty">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <property name="geometry">
      <rect>
-      <x>420</x>
-      <y>60</y>
+      <x>690</x>
+      <y>390</y>
       <width>93</width>
       <height>28</height>
      </rect>
@@ -127,13 +138,45 @@
      <enum>Qt::AutoText</enum>
     </property>
    </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>300</y>
+      <width>131</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>下落速度(格/秒)：</string>
+    </property>
+   </widget>
+   <widget class="QSpinBox" name="sbSpeed">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>300</y>
+      <width>51</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="minimum">
+     <number>1</number>
+    </property>
+    <property name="maximum">
+     <number>12</number>
+    </property>
+    <property name="value">
+     <number>2</number>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>660</width>
+     <width>664</width>
      <height>26</height>
     </rect>
    </property>
@@ -198,10 +241,27 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>sbSpeed</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>updateSpeed(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>579</x>
+     <y>339</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>579</x>
+     <y>380</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>generateRandomCells()</slot>
   <slot>startGame()</slot>
   <slot>emptyCells()</slot>
+  <slot>updateSpeed(int)</slot>
  </slots>
 </ui>

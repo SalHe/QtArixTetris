@@ -71,6 +71,8 @@ void MainWindow::timerEvent(QTimerEvent *event)
 
                 killTimer(blockDownTimer);
                 killTimer(keyPressProcessTimer);
+
+                blockDownTimer = keyPressProcessTimer = 0;
             }
         }else{
             controller->moveBlock(TetrisController::MoveDirection::DOWN);
@@ -130,6 +132,7 @@ void MainWindow::startGame()
     emptyCells();
     blockDownTimer = startTimer(1000 / 2);
     keyPressProcessTimer = startTimer(1000/3);
+    updateSpeed(ui->sbSpeed->value());
 
     emptyScores();
     QRandomGenerator random(QTime::currentTime().msec());
@@ -144,5 +147,15 @@ void MainWindow::emptyCells()
         }
     }
     ui->tetrisPanel->update();
+}
+
+void MainWindow::updateSpeed(int speed)
+{
+    if(blockDownTimer == 0) return;
+    killTimer(blockDownTimer);
+    killTimer(keyPressProcessTimer);
+
+    blockDownTimer = startTimer(1000 / speed);
+    keyPressProcessTimer = startTimer(1000 / (speed / 2.0 * 3));
 }
 

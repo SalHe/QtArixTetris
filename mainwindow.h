@@ -20,8 +20,8 @@ class MainWindow : public QMainWindow
     int nextBlock;
     QColor nextBlockColor;
 
-    int blockDownTimer;
-    int keyPressProcessTimer;
+    int blockDownTimer = 0;
+    int keyPressProcessTimer = 0;
 
     QMap<int, bool> pressedKeys;
 
@@ -48,10 +48,10 @@ protected:
     void emptyScores();
     void addScores(int ds);
 
-
 private slots:
     void generateRandomCells();
     void startGame();
     void emptyCells();
+    void updateSpeed(int speed);
 };
 #endif // MAINWINDOW_H

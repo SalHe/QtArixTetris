@@ -233,7 +233,7 @@ int TetrisController::removeFullLine()
             y++;
         }
 
-        panel()->debugOutputCells();
+//        panel()->debugOutputCells();
         y--;
     }
     panel()->update();

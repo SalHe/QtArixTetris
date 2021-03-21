@@ -40,8 +40,13 @@ void MainWindow::setNextBlock(int blockID, QColor color)
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
-    pressedKeys[event->key()] = true;
-    handleKey();
+    if(event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter){
+        paused = !paused;
+        this->setWindowTitle(tr("俄罗斯方块：") + (paused ? tr("已暂停") : ""));
+    }else{
+        pressedKeys[event->key()] = true;
+        handleKey();
+    }
 }
 
 void MainWindow::keyReleaseEvent(QKeyEvent *event)
@@ -52,6 +57,7 @@ void MainWindow::keyReleaseEvent(QKeyEvent *event)
 void MainWindow::timerEvent(QTimerEvent *event)
 {
     if(event->timerId() == blockDownTimer){
+        if(paused) return;
         if(controller->isBlockToBottom()){
             controller->placeBlock();
 
@@ -74,6 +80,7 @@ void MainWindow::timerEvent(QTimerEvent *event)
 
 void MainWindow::handleKey()
 {
+    if(paused) return;
     if(pressedKeys[Qt::Key_A]){
         controller->moveBlockLeft();
     }else if(pressedKeys[Qt::Key_D]){
@@ -104,15 +111,15 @@ void MainWindow::addScores(int ds)
 void MainWindow::generateRandomCells()
 {
     QRandomGenerator random(QTime::currentTime().msec());
-     for (int y=17 - random.generate()%3;y < ui->tetrisPanel->cellRows(); y++) {
-         for (int x=0; x < ui->tetrisPanel->cellColumns(); x++) {
-             ui->tetrisPanel->getCell(x, y)->setExist((random.generate() % 2) || y>=16);
-             ui->tetrisPanel->setCellColor(x, y, QColor::fromRgb(random.generate() % 255, random.generate() % 255, random.generate() % 255));
-         }
-     }
-     // ui->tetrisPanel->update();
+    for (int y=17 - random.generate()%3;y < ui->tetrisPanel->cellRows(); y++) {
+        for (int x=0; x < ui->tetrisPanel->cellColumns(); x++) {
+            ui->tetrisPanel->getCell(x, y)->setExist((random.generate() % 2) || y>=16);
+            ui->tetrisPanel->setCellColor(x, y, QColor::fromRgb(random.generate() % 255, random.generate() % 255, random.generate() % 255));
+        }
+    }
+    // ui->tetrisPanel->update();
 
-     setNextBlock(rand() % 7, QColor::fromRgb(random.generate() % 255, random.generate() % 255, random.generate() % 255));
+    setNextBlock(rand() % 7, QColor::fromRgb(random.generate() % 255, random.generate() % 255, random.generate() % 255));
 
 }
 

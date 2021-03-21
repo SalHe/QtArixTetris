@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>646</width>
+    <width>660</width>
     <height>657</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>俄罗斯方块</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="TetrisPanel" name="tetrisPanel" native="true">
@@ -111,13 +111,29 @@
      <string>0</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>100</y>
+      <width>91</width>
+      <height>131</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;W：旋转&lt;/p&gt;&lt;p&gt;S：下&lt;/p&gt;&lt;p&gt;A：左&lt;/p&gt;&lt;p&gt;D：右&lt;/p&gt;&lt;p&gt;Enter：暂停&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>646</width>
+     <width>660</width>
      <height>26</height>
     </rect>
    </property>

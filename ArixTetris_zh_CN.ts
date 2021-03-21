@@ -5,7 +5,7 @@
     <name>MainWindow</name>
     <message>
         <location filename="mainwindow.ui" line="14"/>
-        <source>MainWindow</source>
+        <source>俄罗斯方块</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -31,6 +31,21 @@
     <message>
         <location filename="mainwindow.ui" line="111"/>
         <source>0</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="124"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;W：旋转&lt;/p&gt;&lt;p&gt;S：下&lt;/p&gt;&lt;p&gt;A：左&lt;/p&gt;&lt;p&gt;D：右&lt;/p&gt;&lt;p&gt;Enter：暂停&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="45"/>
+        <source>俄罗斯方块：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="45"/>
+        <source>已暂停</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

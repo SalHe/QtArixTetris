@@ -26,6 +26,7 @@ class MainWindow : public QMainWindow
     QMap<int, bool> pressedKeys;
 
     int scores = 0;
+    bool paused = false;
 
 public:
     MainWindow(QWidget *parent = nullptr);

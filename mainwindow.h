@@ -25,6 +25,8 @@ class MainWindow : public QMainWindow
 
     QMap<int, bool> pressedKeys;
 
+    int scores = 0;
+
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -40,6 +42,10 @@ protected:
     void timerEvent(QTimerEvent *event) override;
 
     void handleKey();
+
+    void setScores(int score);
+    void emptyScores();
+    void addScores(int ds);
 
 
 private slots:

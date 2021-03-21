@@ -56,7 +56,7 @@ void MainWindow::timerEvent(QTimerEvent *event)
             controller->placeBlock();
 
             int fullLines = controller->removeFullLine();
-            qDebug() << "FULL LINES = " << fullLines;
+            addScores(fullLines * fullLines * 10);
 
             QRandomGenerator random(QTime::currentTime().msec());
             setNextBlock(rand() % 7, QColor::fromRgb(random.generate() % 255, random.generate() % 255, random.generate() % 255));
@@ -85,6 +85,22 @@ void MainWindow::handleKey()
     }
 }
 
+void MainWindow::setScores(int score)
+{
+    this->scores = score;
+    ui->labelScore->setText(QString("%1").arg(score));
+}
+
+void MainWindow::emptyScores()
+{
+    setScores(0);
+}
+
+void MainWindow::addScores(int ds)
+{
+    setScores(ds + scores);
+}
+
 void MainWindow::generateRandomCells()
 {
     QRandomGenerator random(QTime::currentTime().msec());
@@ -105,7 +121,7 @@ void MainWindow::startGame()
     blockDownTimer = startTimer(1000 / 2);
     keyPressProcessTimer = startTimer(1000/3);
 
-
+    emptyScores();
     QRandomGenerator random(QTime::currentTime().msec());
     setNextBlock(random.generate() % 7, QColor::fromRgb(random.generate() % 255, random.generate() % 255, random.generate() % 255));
 }

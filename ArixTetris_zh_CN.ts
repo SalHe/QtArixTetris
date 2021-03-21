@@ -23,5 +23,15 @@
         <source>清空方块</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="mainwindow.ui" line="92"/>
+        <source>Score：</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="111"/>
+        <source>0</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

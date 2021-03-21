@@ -16,6 +16,10 @@ class MainWindow : public QMainWindow
 
     TetrisController * controller;
 
+    TetrisController * nextBlockController;
+    int nextBlock;
+    QColor nextBlockColor;
+
     int blockDownTimer;
     int keyPressProcessTimer;
 
@@ -27,6 +31,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+    void setNextBlock(int blockID, QColor color);
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;

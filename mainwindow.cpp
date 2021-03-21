@@ -13,13 +13,29 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     ui->tetrisPanel->init(12, 18);
+    ui->tpNextBlock->init(4, 4);
 
     controller = new TetrisController(4, -1, ui->tetrisPanel);
+    nextBlockController = new TetrisController(0, 0, ui->tpNextBlock);
+
+    QRandomGenerator random(QTime::currentTime().msec());
+    nextBlockColor = QColor::fromRgb(random.generate() % 255, random.generate() % 255, random.generate() % 255);
+    nextBlock = random.generate() % 7;
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::setNextBlock(int blockID, QColor color)
+{
+    controller->nextBlock(nextBlock, nextBlockColor);
+
+    nextBlock = blockID;
+    nextBlockColor = color;
+    nextBlockController->setCurrentBlock(nextBlock);
+    nextBlockController->setBlockColor(nextBlockColor);
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
@@ -43,7 +59,7 @@ void MainWindow::timerEvent(QTimerEvent *event)
             qDebug() << "FULL LINES = " << fullLines;
 
             QRandomGenerator random(QTime::currentTime().msec());
-            controller->nextBlock(rand() % 7, QColor::fromRgb(random.generate() % 255, random.generate() % 255, random.generate() % 255));
+            setNextBlock(rand() % 7, QColor::fromRgb(random.generate() % 255, random.generate() % 255, random.generate() % 255));
             if(controller->isBlockToBottom()){
                 killTimer(blockDownTimer);
                 killTimer(keyPressProcessTimer);
@@ -80,8 +96,7 @@ void MainWindow::generateRandomCells()
      }
      // ui->tetrisPanel->update();
 
-    controller->setBlockColor(QColor::fromRgb(random.generate() % 255, random.generate() % 255, random.generate() % 255));
-    controller->setCurrentBlock(random.generate() % 7);
+     setNextBlock(rand() % 7, QColor::fromRgb(random.generate() % 255, random.generate() % 255, random.generate() % 255));
 
 }
 
@@ -89,6 +104,10 @@ void MainWindow::startGame()
 {
     blockDownTimer = startTimer(1000 / 2);
     keyPressProcessTimer = startTimer(1000/3);
+
+
+    QRandomGenerator random(QTime::currentTime().msec());
+    setNextBlock(random.generate() % 7, QColor::fromRgb(random.generate() % 255, random.generate() % 255, random.generate() % 255));
 }
 
 void MainWindow::emptyCells()

@@ -63,6 +63,16 @@
      <string>清空方块</string>
     </property>
    </widget>
+   <widget class="TetrisPanel" name="tpNextBlock" native="true">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>100</y>
+      <width>128</width>
+      <height>128</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

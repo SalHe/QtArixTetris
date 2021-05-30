@@ -23,6 +23,9 @@
       <height>576</height>
      </rect>
     </property>
+    <property name="mouseTracking">
+     <bool>true</bool>
+    </property>
    </widget>
    <widget class="QPushButton" name="btnGenerate">
     <property name="enabled">
@@ -200,8 +203,8 @@
    <slot>generateRandomCells()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>481</x>
-     <y>63</y>
+     <x>690</x>
+     <y>376</y>
     </hint>
     <hint type="destinationlabel">
      <x>544</x>
@@ -232,8 +235,8 @@
    <slot>emptyCells()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>446</x>
-     <y>98</y>
+     <x>690</x>
+     <y>416</y>
     </hint>
     <hint type="destinationlabel">
      <x>430</x>

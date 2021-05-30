@@ -156,6 +156,6 @@ void MainWindow::updateSpeed(int speed)
     killTimer(keyPressProcessTimer);
 
     blockDownTimer = startTimer(1000 / speed);
-    keyPressProcessTimer = startTimer(1000 / (speed / 2.0 * 3));
+    keyPressProcessTimer = startTimer(500);
 }
 

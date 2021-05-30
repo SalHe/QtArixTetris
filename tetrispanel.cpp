@@ -7,6 +7,7 @@
 
 TetrisPanel::TetrisPanel(QWidget *parent) : QWidget(parent)
 {
+    this->setFocusPolicy(Qt::FocusPolicy::StrongFocus);
 }
 
 TetrisPanel::~TetrisPanel()
